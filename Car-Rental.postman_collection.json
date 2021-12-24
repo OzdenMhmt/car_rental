@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "f1e8b562-42b6-4595-b11a-f812100557a8",
+		"name": "Car-Rental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "get all user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzg0MTQxLCJleHAiOjE2NDA0NzA1NDF9._DLULv9Nwsyc671ouxO3wtvylbat7jk1FCssr89rzerIBBhrfagOTsQh6fGVv1j_POUzp6mhluBLC6sHZSnllw",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/user/auth/all"
+							},
+							"response": []
+						},
+						{
+							"name": "get user by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzg0MTQxLCJleHAiOjE2NDA0NzA1NDF9._DLULv9Nwsyc671ouxO3wtvylbat7jk1FCssr89rzerIBBhrfagOTsQh6fGVv1j_POUzp6mhluBLC6sHZSnllw",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/user/7/auth"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteuserbyid",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg1NzkyLCJleHAiOjE2NDA0NzIxOTJ9.XatTQs9e7AfLiWjjZKKjQoRgsS5FJ1LfD9GVBkmTJO3lqnkN-lV9snIgYevAjJE0SdxRfg2ryDN3AaljW1qThw",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/user/5/auth"
+							},
+							"response": []
+						},
+						{
+							"name": "update user by Id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg1NDMwLCJleHAiOjE2NDA0NzE4MzB9.WiSOEcc5iQ7fNFME0JtFT_SLQfeUo-N0mfW1vvkUuC_06wBa7ta0cETcJRA5ibwBEJmMGM7U_SQhzT1vUcM8EA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"firstName\": \"david\",\r\n\"lastName\": \"david\",\r\n\"password\":\"david1\",\r\n\"phoneNumber\": \"(541) 317-8828\",\r\n\"email\": \"david@gmail.com\",\r\n\"address\": \"2163 New Street, Bend, Oregon\",\r\n\"zipCode\": \"97701\",\r\n\"roles\": [\"Customer\"]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8070/car-rental/api/user/7/auth"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "visitors",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\": \"david@gmail.com\",\r\n\"password\": \"david\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8070/car-rental/api/login"
+							},
+							"response": []
+						},
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"firstName\": \"test\",\r\n\"lastName\": \"test\",\r\n\"password\": \"test\",\r\n\"phoneNumber\": \"(555) 888-8888\",\r\n\"email\": \"test@gmail.com\",\r\n\"address\": \"2163 New Street, Mecidyekoy, Istanbul\",\r\n\"zipCode\": \"97702\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8070/car-rental/api/register"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg3MDA5LCJleHAiOjE2NDA0NzM0MDl9.5nfozv0usT_h5dHz50jH3LwYkGaLucI2VyzgF1llz5mNvCbmXTF8R-2rTkh4Gckp1siT85LhqiNoK6K6TE792Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\" : \"david1\",\r\n    \"newPassword\" : \"david\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8070/car-rental/api/user/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "get user info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjQwMzg2NTg0LCJleHAiOjE2NDA0NzI5ODR9.u_hc6bsUqS-NkHBDEo5CfOhqYkBJ-sPBXSe1CoF5JN5XwjJKGVLe80rDOv0BRL5452h5cSgDOOom7tzp2mFgSA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8070/car-rental/api/user"
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjQwMzg2NTg0LCJleHAiOjE2NDA0NzI5ODR9.u_hc6bsUqS-NkHBDEo5CfOhqYkBJ-sPBXSe1CoF5JN5XwjJKGVLe80rDOv0BRL5452h5cSgDOOom7tzp2mFgSA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\": \"try\",\r\n\"lastName\": \"try\",\r\n\"phoneNumber\": \"(541) 317-8828\",\r\n\"email\": \"try@gmail.com\",\r\n\"address\": \"2163 New Street, Bend, Oregon\",\r\n\"zipCode\": \"97701\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8070/car-rental/api/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "image",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "add image",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzYwNzg3LCJleHAiOjE2NDA0NDcxODd9.6DR7YcEthhvITgvv5CEDOlU6JWJweLYKEKa44uuqMW8asN2FQ2bNxNjl70JD7fObGwlCRb7rGaP7IoOYh2cqYg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/ozdensm/Desktop/jeep.png"
+										}
+									]
+								},
+								"url": "http://localhost:8070/car-rental/api/files/upload"
+							},
+							"response": []
+						},
+						{
+							"name": "get all files",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzYwNzg3LCJleHAiOjE2NDA0NDcxODd9.6DR7YcEthhvITgvv5CEDOlU6JWJweLYKEKa44uuqMW8asN2FQ2bNxNjl70JD7fObGwlCRb7rGaP7IoOYh2cqYg",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/files"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "visitors",
+					"item": [
+						{
+							"name": "display image",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzYwNzg3LCJleHAiOjE2NDA0NDcxODd9.6DR7YcEthhvITgvv5CEDOlU6JWJweLYKEKa44uuqMW8asN2FQ2bNxNjl70JD7fObGwlCRb7rGaP7IoOYh2cqYg",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/files/display/5f9468b5-1702-402a-b14c-e08789695a18"
+							},
+							"response": []
+						},
+						{
+							"name": "get file-download",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzYwNzg3LCJleHAiOjE2NDA0NDcxODd9.6DR7YcEthhvITgvv5CEDOlU6JWJweLYKEKa44uuqMW8asN2FQ2bNxNjl70JD7fObGwlCRb7rGaP7IoOYh2cqYg",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/files/5f9468b5-1702-402a-b14c-e08789695a18"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "car",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "add car",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwMzY3NTU1LCJleHAiOjE2NDA0NTM5NTV9.bnX2xssFc7dhjcvFQj_ax3t7EaQQwaO7pdSGfpZUbdPPodoXfRa_53LH_K876MCjARmwzVQTovRp2gTlRt-BkA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"model\" :\"jeep\",\r\n    \"doors\": 4,\r\n    \"seats\":4,\r\n    \"luggage\":480,\r\n    \"transmission\": \"triptonic\",\r\n    \"airConditioning\": true,\r\n    \"age\":2,\r\n    \"pricePerHour\":1000,\r\n    \"fuelType\": \"oil\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8070/car-rental/api/car/admin/5f9468b5-1702-402a-b14c-e08789695a18/add"
+							},
+							"response": []
+						},
+						{
+							"name": "update car",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg3OTAyLCJleHAiOjE2NDA0NzQzMDJ9.64b4c1u3HCs7HdJ3onB1pbDH8XAzQ4doIGh_oLDGUjRTHpIpkT8Ccaacs1_jeZ3fO0tak7qowNd3zCtQxdJ5qw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"model\" :\"jeep\",\r\n    \"doors\": 4,\r\n    \"seats\":4,\r\n    \"luggage\":300,\r\n    \"transmission\": \"triptonic\",\r\n    \"airConditioning\": true,\r\n    \"age\":2,\r\n    \"pricePerHour\":1000,\r\n    \"fuelType\": \"oil\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/car-rental/api/car/admin/auth?id=1&imageId=5f9468b5-1702-402a-b14c-e08789695a18",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"car-rental",
+										"api",
+										"car",
+										"admin",
+										"auth"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "imageId",
+											"value": "5f9468b5-1702-402a-b14c-e08789695a18"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete by id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg3OTAyLCJleHAiOjE2NDA0NzQzMDJ9.64b4c1u3HCs7HdJ3onB1pbDH8XAzQ4doIGh_oLDGUjRTHpIpkT8Ccaacs1_jeZ3fO0tak7qowNd3zCtQxdJ5qw",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:8070/car-rental/api/car/admin/1/auth"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Visitors",
+					"item": [
+						{
+							"name": "getAllCars",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8070/car-rental/api/car/visitors/all"
+							},
+							"response": []
+						},
+						{
+							"name": "getCarById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8070/car-rental/api/car/visitors/1"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
