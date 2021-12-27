@@ -36,7 +36,7 @@ public class Reservation implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy HH:mm:ss", timezone = "Turkey")
     @NotNull(message = "Please enter the drop of time of the reservation")
     @Column(nullable = false)
-    private LocalDateTime dropOfTime;
+    private LocalDateTime dropOffTime;
 
     @Size(max = 50)
     @NotNull(message = "Please enter the pick up location of the reservation")
@@ -55,8 +55,8 @@ public class Reservation implements Serializable {
     @Column(nullable = false)
     private Double totalPrice;
 
-    public Long getTotalHours(LocalDateTime pickUpTime, LocalDateTime dropOfTime) {
+    public Long getTotalHours(LocalDateTime pickUpTime, LocalDateTime dropOffTime) {
 
-        return ChronoUnit.HOURS.between(pickUpTime, dropOfTime);
+        return ChronoUnit.HOURS.between(pickUpTime, dropOffTime);
     }
 }

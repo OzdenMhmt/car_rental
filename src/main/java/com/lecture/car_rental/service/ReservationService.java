@@ -3,6 +3,7 @@ import com.lecture.car_rental.domain.Car;
 import com.lecture.car_rental.domain.Reservation;
 import com.lecture.car_rental.domain.User;
 import com.lecture.car_rental.domain.enumeration.ReservationStatus;
+import com.lecture.car_rental.dto.ReservationDTO;
 import com.lecture.car_rental.exception.BadRequestException;
 import com.lecture.car_rental.exception.ResourceNotFoundException;
 import com.lecture.car_rental.repository.CarRepository;
@@ -17,14 +18,37 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 
+
+
 public class ReservationService {
+
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final CarRepository carRepository;
     private static final String USER_NOT_FOUND_MSG = "user with id %d not found";
     private static final String CAR_NOT_FOUND_MSG = "car with id %d not found";
+    private static final String RESERVATION_NOT_FOUND_MSG = "reservation with id %d not found";
+
+   public List<ReservationDTO> fetchAllReservations(){
+        return reservationRepository.findAllReservation();
+    }
+
+    public ReservationDTO findById(Long id) throws ResourceNotFoundException{
+        return reservationRepository.findReservationById(id).orElseThrow(() ->
+                new ResourceNotFoundException(String.format(RESERVATION_NOT_FOUND_MSG, id)));
+    }
+
+
+    public ReservationDTO findByIdAndUserId(Long id, Long userId) throws ResourceNotFoundException {
+        return reservationRepository.findReservationByUserId(id, userId).orElseThrow(() ->
+                new ResourceNotFoundException(String.format(RESERVATION_NOT_FOUND_MSG, id)));
+    }
+    public List<ReservationDTO> findAllByUserId(Long userId) throws ResourceNotFoundException {
+        return reservationRepository.findReservationsByUserId(userId);
+    }
+
     public void addReservation(Reservation reservation, Long userId, Car carId) throws BadRequestException {
-        boolean checkStatus = carAvailability(carId.getId(), reservation.getPickUpTime(), reservation.getDropOfTime());
+        boolean checkStatus = carAvailability(carId.getId(), reservation.getPickUpTime(), reservation.getDropOffTime());
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException(String.format(USER_NOT_FOUND_MSG, userId)));
         if (!checkStatus)
@@ -33,10 +57,44 @@ public class ReservationService {
             throw new BadRequestException("Car is already reserved! Please choose another");
         reservation.setCarId(carId);
         reservation.setUserId(user);
-        Double totalPrice = totalPrice(reservation.getPickUpTime(), reservation.getDropOfTime(), carId.getId());
+        Double totalPrice = totalPrice(reservation.getPickUpTime(), reservation.getDropOffTime(), carId.getId());
         reservation.setTotalPrice(totalPrice);
         reservationRepository.save(reservation);
     }
+
+    public void updateReservation(Car carId,Long id, Reservation reservation) throws BadRequestException{
+        boolean checkStatus = carAvailability(carId.getId(), reservation.getPickUpTime(), reservation.getDropOffTime());
+
+
+        Optional<Reservation>reservationExist = reservationRepository.findById(id);
+
+        if (reservationExist.isEmpty()) {
+            throw new ResourceNotFoundException("Error: Reservation does not exist!");
+        }
+
+        if (reservation.getPickUpTime().compareTo(reservationExist.get().getPickUpTime())==0 &&
+        reservation.getDropOffTime().compareTo(reservationExist.get().getDropOffTime())==0 &&
+        carId== reservationExist.get().getCarId()) {
+            System.out.println();
+        }else if (checkStatus) {
+            throw new BadRequestException("Car is already reserved! Please choose another");
+        }
+
+        Double totalPrice = totalPrice(reservation.getPickUpTime(), reservation.getDropOffTime(), carId.getId());
+        reservationExist.get().setTotalPrice(totalPrice);
+
+        reservationExist.get().setCarId(carId);
+        reservationExist.get().setPickUpTime(reservation.getPickUpTime());
+        reservationExist.get().setDropOffTime(reservation.getDropOffTime());
+        reservationExist.get().setPickUpLocation(reservation.getPickUpLocation());
+        reservationExist.get().setDropOffLocation(reservation.getDropOffLocation());
+        reservationExist.get().setStatus(reservation.getStatus());
+
+        reservationRepository.save(reservationExist.get());
+
+
+    }
+
     public boolean carAvailability(Long carId, LocalDateTime pickUpTime, LocalDateTime dropOffTime) {
         List<Reservation> checkStatus = reservationRepository.checkStatus(carId, pickUpTime, dropOffTime,
                 ReservationStatus.DONE, ReservationStatus.CANCELED);
