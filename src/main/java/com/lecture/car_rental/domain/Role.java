@@ -25,4 +25,9 @@ public class Role implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(length = 30)
     private UserRole name;
+
+    @Override
+    public String toString() {
+        return "" + name + '}';
+    }
 }
