@@ -1016,6 +1016,68 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "register heroku",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"test\",\r\n\"lastName\": \"test\",\r\n\"password\": \"test\",\r\n\"phoneNumber\": \"(555) 888-8888\",\r\n\"email\": \"test@gmail.com\",\r\n\"address\": \"2163 New Street, Mecidyekoy, Istanbul\",\r\n\"zipCode\": \"97702\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://lec-car-rental-w.herokuapp.com/car-rental/api/register",
+					"protocol": "http",
+					"host": [
+						"lec-car-rental-w",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"car-rental",
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login heroku",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://lec-car-rental-w.herokuapp.com/car-rental/api/login",
+					"protocol": "http",
+					"host": [
+						"lec-car-rental-w",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"car-rental",
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
