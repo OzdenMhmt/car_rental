@@ -33,18 +33,20 @@ public class ReservationController {
         return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ReservationDTO> getReservationById(@PathVariable Long id) {
-        ReservationDTO reservation = reservationService.findById(id);
-        return new ResponseEntity<>(reservation, HttpStatus.OK);
-    }
+
 
     @GetMapping("/admin/auth/All")
     @PreAuthorize(" hasRole('ADMIN')")
     public ResponseEntity<List<ReservationDTO>>getAllUserReservations(@RequestParam (value = "userId") Long userId){
         List<ReservationDTO> reservations = reservationService.findAllByUserId(userId);
         return new ResponseEntity<>(reservations, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ReservationDTO> getReservationById(@PathVariable Long id) {
+        ReservationDTO reservation = reservationService.findById(id);
+        return new ResponseEntity<>(reservation, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/auth")
@@ -73,6 +75,40 @@ public class ReservationController {
         map.put("Reservation added successfully!", true);
         return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
+
+    @PostMapping("/add/auth")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Boolean>> addReservation(@RequestParam (value = "userId") Long userId,
+                                                               @RequestParam (value = "carId") Car carId,
+                                                               @Valid @RequestBody Reservation reservation) {
+        reservationService.addReservation(reservation, userId, carId);
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("Reservation added successfully!", true);
+        return new ResponseEntity<>(map, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/admin/auth")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Boolean>> updateReservation(@RequestParam(value = "carId") Car carId,
+                                                                  @RequestParam(value = "reservationId") Long reservationId,
+                                                                  @Valid @RequestBody Reservation reservation) {
+        reservationService.updateReservation(carId, reservationId, reservation);
+
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("success", true);
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/admin/{id}/auth")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Boolean>> deleteReservation(@PathVariable Long id){
+        reservationService.removeById(id);
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("success", true);
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/auth")
     @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")

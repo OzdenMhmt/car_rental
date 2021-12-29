@@ -117,43 +117,6 @@
 							"response": []
 						},
 						{
-							"name": "updatePassword",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg3MDA5LCJleHAiOjE2NDA0NzM0MDl9.5nfozv0usT_h5dHz50jH3LwYkGaLucI2VyzgF1llz5mNvCbmXTF8R-2rTkh4Gckp1siT85LhqiNoK6K6TE792Q",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"oldPassword\" : \"david1\",\r\n    \"newPassword\" : \"david\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8070/car-rental/api/user/auth",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8070",
-									"path": [
-										"car-rental",
-										"api",
-										"user",
-										"auth"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "update user by Id",
 							"request": {
 								"method": "PUT",
@@ -316,6 +279,43 @@
 								"car-rental",
 								"api",
 								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjQwMzg3MDA5LCJleHAiOjE2NDA0NzM0MDl9.5nfozv0usT_h5dHz50jH3LwYkGaLucI2VyzgF1llz5mNvCbmXTF8R-2rTkh4Gckp1siT85LhqiNoK6K6TE792Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\" : \"david1\",\r\n    \"newPassword\" : \"david\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/car-rental/api/user/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"car-rental",
+								"api",
+								"user",
+								"auth"
 							]
 						}
 					},
@@ -784,6 +784,84 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "add reservation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwODE2MzE3LCJleHAiOjE2NDA5MDI3MTd9.U_DTCZECJwMsQqNmUGnDenZLdzVZmbKD-PnuLF7n-9hCKM68PxLNkHC167WlaBFaNJhSBEx5kq2E2iQZkWbRQQ",
+										"type": "string"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"pickUpTime\": \"03/02/2026 12:30:00\",\r\n    \"dropOffTime\": \"02/03/2026 12:30:00\",\r\n    \"pickUpLocation\": \"New Jersey\",\r\n    \"dropOffLocation\": \"New Jersey\",\r\n    \"status\": \"CANCELED\"\r\n    \r\n} ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/car-rental/api/reservations/add/auth?carId=1&userId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"car-rental",
+										"api",
+										"reservations",
+										"add",
+										"auth"
+									],
+									"query": [
+										{
+											"key": "carId",
+											"value": "1"
+										},
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete by id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQwODE2NjYwLCJleHAiOjE2NDA5MDMwNjB9.-KIfW9fiF-4Adqp35pq7MpCfeCSrzM6SzF84HuLHhE01o_r5yj4vcr6uGk2EU-yKjsSXuRnKcRTrEY0ebfMcYQ",
+										"type": "string"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8070/car-rental/api/reservations/admin/3/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"car-rental",
+										"api",
+										"reservations",
+										"admin",
+										"3",
+										"auth"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -938,7 +1016,7 @@
 			]
 		},
 		{
-			"name": "excel",
+			"name": "excel by admin",
 			"item": [
 				{
 					"name": "getUserFile",
